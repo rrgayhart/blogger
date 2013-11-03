@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_filter :require_login, except: [:index, :show]
 
   def index
     @articles = Article.all
@@ -11,7 +12,7 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article = Article.new
+    @article = Article.new(article_params)
   end
 
   def create

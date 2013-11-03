@@ -1,5 +1,4 @@
 class Article < ActiveRecord::Base
-  attr_accessible :title, :body, :tag_list, :image
   has_many :comments
   has_many :taggings
   has_many :tags, through: :taggings
@@ -7,9 +6,7 @@ class Article < ActiveRecord::Base
 
   
   def tag_list
-    self.tags.collect do |tag|
-      tag.name
-    end.join(", ")
+    tags.join(", ")
   end
 
   def tag_list=(tags_string)
